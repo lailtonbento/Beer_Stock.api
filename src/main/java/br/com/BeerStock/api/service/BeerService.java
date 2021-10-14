@@ -9,7 +9,8 @@ import br.com.BeerStock.api.model.Beer;
 import br.com.BeerStock.api.repository.BeerRepository;
 
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
-@Data
 public class BeerService {
 
-    @Autowired
-    private  BeerRepository beerRepository;
+
+    private BeerRepository beerRepository;
+
+    @Autowired  
+    public BeerService(BeerRepository beerRepository) {
+        this.beerRepository = beerRepository;
+    }
 
     private final BeerMapper beerMapper = BeerMapper.INSTANCE;
 

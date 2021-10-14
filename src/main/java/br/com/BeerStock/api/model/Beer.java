@@ -2,36 +2,40 @@ package br.com.BeerStock.api.model;
 
 import br.com.BeerStock.api.enums.BeerType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+
 
 @Data
-@Document
+@Entity
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class Beer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @NotBlank
+    @Column(nullable = false)
     private String brand;
 
-    @NotBlank
+    @Column(nullable = false)
     private int max;
 
-    @NotBlank
+    @Column(nullable = false)
     private int quantity;
 
-    @NotBlank
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private BeerType type;
 
 

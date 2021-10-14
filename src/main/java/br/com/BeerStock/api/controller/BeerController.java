@@ -8,6 +8,7 @@ import br.com.BeerStock.api.exception.BeerStockExceededException;
 import br.com.BeerStock.api.service.BeerService;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -25,17 +26,16 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/api/v1/beers")
-
 @Controller
 public class BeerController implements BeerControllerDocs {
 
-    @Autowired
-    private  BeerService beerService;
 
+    private BeerService beerService;
+
+    @Autowired
     public BeerController(BeerService beerService) {
         this.beerService = beerService;
     }
-
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
